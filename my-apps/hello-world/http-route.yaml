@@ -9,11 +9,11 @@ spec:
       namespace: gateway
       sectionName: https       # Must match your Gateway's listeners[].name
   hostnames:
-  - "hello-world.vanillax.xyz"
+  - "hello-world.wiredgateway.com"
   rules:
   - matches:
     - path:
-        type: PathPrefix 
+        type: PathPrefix
         value: /
     backendRefs:
     - name: hello-world

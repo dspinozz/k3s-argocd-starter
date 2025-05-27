@@ -16,4 +16,4 @@ helmCharts:
     releaseName: headlamp
     namespace: kube-system
     includeCRDs: true
-    valuesFile: values.yaml 
+    valuesFile: values.yaml

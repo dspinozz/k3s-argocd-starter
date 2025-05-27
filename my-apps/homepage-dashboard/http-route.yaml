@@ -7,11 +7,11 @@ spec:
     - name: gateway-internal
       namespace: gateway
   hostnames:
-  - "homepage.vanillax.xyz"
+  - "homepage.wiredgateway.com"
   rules:
   - matches:
     - path:
-        type: PathPrefix 
+        type: PathPrefix
         value: /
     backendRefs:
     - name: homepage-dashboard
