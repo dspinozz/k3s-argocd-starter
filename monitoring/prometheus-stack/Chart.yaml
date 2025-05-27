@@ -1,0 +1,6 @@
+apiVersion: v2
+name: prometheus-stack
+description: Wrapper chart for kube-prometheus-stack via ArgoCD Helm plugin
+type: application
+version: 0.1.0
+appVersion: "0.82.2"
