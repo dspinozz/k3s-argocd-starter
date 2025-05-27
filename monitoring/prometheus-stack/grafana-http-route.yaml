@@ -8,7 +8,7 @@ spec:
     - name: gateway-internal
       namespace: gateway
   hostnames:
-    - grafana.vanillax.xyz
+    - grafana.wiredgateway.com
   rules:
     - matches:
         - path:
