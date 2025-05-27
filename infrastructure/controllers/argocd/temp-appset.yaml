@@ -1,0 +1,132 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"ApplicationSet","metadata":{"annotations":{"argocd.argoproj.io/sync-wave":"-2"},"name":"infrastructure-components","namespace":"argocd"},"spec":{"generators":[{"git":{"directories":[{"path":"infrastructure/networking/*"},{"path":"infrastructure/storage/*"},{"path":"infrastructure/controllers/*"}],"repoURL":"https://github.com/mitchross/k3s-argocd-starter","revision":"HEAD"}}],"template":{"metadata":{"labels":{"type":"infrastructure"},"name":"{{path.basename}}"},"spec":{"destination":{"namespace":"{{path.basename}}","server":"https://kubernetes.default.svc"},"project":"infrastructure","source":{"path":"{{path}}","plugin":{"name":"kustomize-build-with-helm"},"repoURL":"https://github.com/mitchross/k3s-argocd-starter","targetRevision":"HEAD"},"syncPolicy":{"automated":{"prune":true,"selfHeal":true},"retry":{"backoff":{"duration":"5s","factor":2,"maxDuration":"3m"},"limit":5},"syncOptions":["CreateNamespace=true","ServerSideApply=true"]}}}}}
+  creationTimestamp: "2025-05-26T19:40:40Z"
+  generation: 1
+  name: infrastructure-components
+  namespace: argocd
+  resourceVersion: "24258"
+  uid: 0d7a5058-7c08-4ed9-93d0-eeb849ddf9db
+spec:
+  generators:
+  - git:
+      directories:
+      - path: infrastructure/networking/*
+      - path: infrastructure/storage/*
+      - path: infrastructure/controllers/*
+      repoURL: https://github.com/mitchross/k3s-argocd-starter
+      revision: HEAD
+  template:
+    metadata:
+      labels:
+        type: infrastructure
+      name: '{{path.basename}}'
+    spec:
+      destination:
+        namespace: '{{path.basename}}'
+        server: https://kubernetes.default.svc
+      project: infrastructure
+      source:
+        path: '{{path}}'
+        plugin:
+          name: kustomize-build-with-helm
+        repoURL: https://github.com/mitchross/k3s-argocd-starter
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
+          limit: 5
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
+status:
+  conditions:
+  - lastTransitionTime: "2025-05-26T20:53:18Z"
+    message: Successfully generated parameters for all Applications
+    reason: ApplicationSetUpToDate
+    status: "False"
+    type: ErrorOccurred
+  - lastTransitionTime: "2025-05-26T20:53:18Z"
+    message: Successfully generated parameters for all Applications
+    reason: ParametersGenerated
+    status: "True"
+    type: ParametersGenerated
+  - lastTransitionTime: "2025-05-26T20:53:18Z"
+    message: ApplicationSet up to date
+    reason: ApplicationSetUpToDate
+    status: "True"
+    type: ResourcesUpToDate
+  resources:
+  - group: argoproj.io
+    health:
+      lastTransitionTime: "2025-05-26T20:53:38Z"
+      status: Healthy
+    kind: Application
+    name: argocd
+    namespace: argocd
+    status: OutOfSync
+    version: v1alpha1
+  - group: argoproj.io
+    health:
+      lastTransitionTime: "2025-05-26T20:01:06Z"
+      status: Healthy
+    kind: Application
+    name: cert-manager
+    namespace: argocd
+    status: Synced
+    version: v1alpha1
+  - group: argoproj.io
+    health:
+      lastTransitionTime: "2025-05-26T20:59:42Z"
+      status: Missing
+    kind: Application
+    name: cilium
+    namespace: argocd
+    status: OutOfSync
+    version: v1alpha1
+  - group: argoproj.io
+    health:
+      lastTransitionTime: "2025-05-26T20:55:21Z"
+      status: Healthy
+    kind: Application
+    name: cloudflared
+    namespace: argocd
+    status: Synced
+    version: v1alpha1
+  - group: argoproj.io
+    health:
+      lastTransitionTime: "2025-05-26T20:01:04Z"
+      status: Healthy
+    kind: Application
+    name: csi-driver-nfs
+    namespace: argocd
+    status: Synced
+    version: v1alpha1
+  - group: argoproj.io
+    health:
+      lastTransitionTime: "2025-05-26T20:01:01Z"
+      status: Progressing
+    kind: Application
+    name: gateway
+    namespace: argocd
+    status: Synced
+    version: v1alpha1
+  - group: argoproj.io
+    health:
+      lastTransitionTime: "2025-05-26T20:53:10Z"
+      status: Healthy
+    kind: Application
+    name: openebs
+    namespace: argocd
+    status: Synced
+    version: v1alpha1

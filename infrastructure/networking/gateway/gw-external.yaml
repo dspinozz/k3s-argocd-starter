@@ -4,27 +4,27 @@ metadata:
   name: gateway-external
   namespace: gateway
 spec:
-  addresses:
-  - type: IPAddress
-    value: 192.168.10.22
+  # addresses:
+  # - type: IPAddress
+  #   value: 192.168.10.22  # Optional: used only for static IP binding
   gatewayClassName: cilium
   listeners:
     - name: http
       protocol: HTTP
       port: 80
-      hostname: "*.vanillax.xyz"
+      hostname: "*.wiredgateway.com"
       allowedRoutes:
         namespaces:
           from: All
     - name: https
       protocol: HTTPS
       port: 443
-      hostname: "*.vanillax.xyz"
+      hostname: "*.wiredgateway.com"
       tls:
         certificateRefs:
-          - name: cert-vanillax
+          - name: cert-wiredgateway
             kind: Secret
-            group: "" # required
+            group: "" # required for cross-namespace secrets
       allowedRoutes:
         namespaces:
           from: All
