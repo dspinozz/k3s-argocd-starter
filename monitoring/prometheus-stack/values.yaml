@@ -4,7 +4,6 @@ prometheus:
       volumeClaimTemplate:
         spec:
           storageClassName: local-path
-          volumeName: pv-prometheus
           accessModes:
             - ReadWriteOnce
           resources:
