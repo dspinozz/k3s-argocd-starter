@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pokemon-bot
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/dspinozz/k3s-argocd-starter.git'
+    targetRevision: HEAD
+    path: my-apps/pokemon-bot
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pokemon
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

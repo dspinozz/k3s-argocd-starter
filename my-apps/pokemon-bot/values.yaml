@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: dspinozz/celery-headless-agent
+  tag: latest
+  pullPolicy: IfNotPresent
+
+celery:
+  app: worker  # since you COPY worker.py
+  queue: default
+  concurrency: 2
+  loglevel: info
+
+redis:
+  image: redis:6.2-alpine
+  port: 6379
+
+resources: {}

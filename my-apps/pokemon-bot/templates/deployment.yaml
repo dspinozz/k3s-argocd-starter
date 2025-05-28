@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+  labels:
+    app: celery
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: celery
+  template:
+    metadata:
+      labels:
+        app: celery
+    spec:
+      containers:
+        - name: celery
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["celery"]
+          args:
+            - "-A"
+            - "{{ .Values.celery.app }}"
+            - "worker"
+            - "--loglevel={{ .Values.celery.loglevel }}"
+            - "--concurrency={{ .Values.celery.concurrency }}"
+            - "-Q"
+            - "{{ .Values.celery.queue }}"
+          env:
+            - name: CELERY_BROKER_URL
+              value: "redis://redis:{{ .Values.redis.port }}/0"
