@@ -1,0 +1,15 @@
+loki:
+  isDefault: true
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClassName: local-path
+  auth_enabled: false
+
+promtail:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+  config:
+    clients:
+      - url: http://loki:3100/loki/api/v1/push
