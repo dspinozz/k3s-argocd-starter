@@ -9,5 +9,19 @@ prometheus:
           resources:
             requests:
               storage: 10G
+    additionalScrapeConfigs:
+      name: additional-scrape-configs
+      key: prometheus-additional.yaml
+
 nodeExporter:
-  enabled: false
+  enabled: true
+  jobLabel: job
+  service:
+    port: 9100
+  serviceMonitor:
+    enabled: true
+    interval: 15s
+    scrapeTimeout: 10s
+    relabelings:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)

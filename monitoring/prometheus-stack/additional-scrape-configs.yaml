@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: additional-scrape-configs
+  namespace: monitoring
+type: Opaque
+stringData:
+  prometheus-additional.yaml: |
+    - job_name: 'external-node-exporters'
+      static_configs:
+        - targets:
+            - '100.78.21.22:9100'    # mac mini
+            - '100.77.19.125:9100'   # thinkpad
+            - '100.120.226.113:9100' # proxmox
+            - '100.71.155.85:9100'   # security VM
