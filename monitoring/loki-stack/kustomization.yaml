@@ -1,9 +1,7 @@
-resources:
-  - https://github.com/grafana/helm-charts/releases/download/loki-stack-2.9.11/loki-stack-2.9.11.tgz
-
 helmCharts:
   - name: loki-stack
     releaseName: loki-stack
     namespace: monitoring
     version: 2.9.11
+    repo: https://grafana.github.io/helm-charts
     valuesFile: values.yaml
