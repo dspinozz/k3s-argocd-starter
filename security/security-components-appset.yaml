@@ -1,0 +1,3 @@
+  - path: security/crowdsec-k8s-bouncer
+    name: crowdsec-k8s-bouncer
+    namespace: argocd

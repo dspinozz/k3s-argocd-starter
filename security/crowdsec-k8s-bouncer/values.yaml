@@ -1,0 +1,11 @@
+replicaCount: 1
+
+api:
+  credentials:
+    existingSecret: crowdsec-bouncer-api
+    key: bouncer_key
+
+crowdsec:
+  lapi:
+    url: http://100.71.155.85:8080
+    tlsSkipVerify: true
