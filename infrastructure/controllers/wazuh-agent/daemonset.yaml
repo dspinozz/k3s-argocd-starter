@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: wazuh-agent
+  namespace: wazuh-agent
+spec:
+  selector:
+    matchLabels:
+      app: wazuh-agent
+  template:
+    metadata:
+      labels:
+        app: wazuh-agent
+    spec:
+      hostPID: true
+      containers:
+      - name: wazuh-agent
+        image: wazuh/wazuh-agent:4.7.3
+        env:
+        - name: MANAGER_IP
+          value: "100.71.155.85"
+        - name: MANAGER_PORT
+          value: "1514"
+        - name: WAZUH_AGENT_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: logs
+          mountPath: /var/log
+          readOnly: true
+        - name: proc
+          mountPath: /host/proc
+          readOnly: true
+        - name: etc
+          mountPath: /host/etc
+          readOnly: true
+      volumes:
+      - name: logs
+        hostPath:
+          path: /var/log
+      - name: proc
+        hostPath:
+          path: /proc
+      - name: etc
+        hostPath:
+          path: /etc
