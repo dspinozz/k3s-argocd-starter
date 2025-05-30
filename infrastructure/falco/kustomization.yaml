@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: falco
+
+resources:
+  - namespace.yaml
+
+helmCharts:
+  - name: falco
+    repo: https://falcosecurity.github.io/charts
+    releaseName: falco
+    namespace: falco
+    version: 3.6.0
+    valuesFile: falco-values.yaml
+
+  - name: falcosidekick
+    repo: https://falcosecurity.github.io/charts
+    releaseName: falcosidekick
+    namespace: falco
+    version: 0.6.5
+    valuesFile: falcosidekick-values.yaml
+resources:
+  - namespace.yaml
+  - release.yaml

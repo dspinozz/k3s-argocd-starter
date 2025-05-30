@@ -1,0 +1,40 @@
+image:
+  pullPolicy: IfNotPresent
+
+tty: false
+timezone: UTC
+
+falco:
+  grpc:
+    enabled: true
+    bind_address: "0.0.0.0"
+    threadiness: 1
+
+  jsonOutput: true
+  logStderr: true
+  logSyslog: false
+
+  priority: debug
+  outputTimeout: 30000
+  bufferedOutputs: false
+  outputs:
+    - stdout
+    - http
+
+  httpOutput:
+    enabled: true
+    url: "http://falcosidekick.falco:2801"
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

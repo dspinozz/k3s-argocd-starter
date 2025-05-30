@@ -1,0 +1,21 @@
+replicaCount: 1
+
+config:
+  debug: true
+  listenport: 2801
+  customfields: false
+
+  webhook:
+    wazuh:
+      enabled: true
+      url: "http://100.71.155.85:55000/alerts"
+      method: POST
+
+
+resources:
+  limits:
+    cpu: 250m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 128Mi
