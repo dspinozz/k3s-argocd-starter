@@ -1,3 +1,10 @@
+helmCharts:
+  - name: falco
+    repo: https://falcosecurity.github.io/charts
+    version: 3.7.1
+    releaseName: falco
+    namespace: falco
+    valuesFile: values.yaml
+
 resources:
   - ns.yaml
-  - values.yaml
