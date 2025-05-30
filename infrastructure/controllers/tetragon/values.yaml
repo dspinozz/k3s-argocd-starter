@@ -1,0 +1,24 @@
+tetragon:
+  enabled: true
+
+  tetragonConfig:
+    exportFilename: /var/log/tetragon/tetragon.log
+
+  operator:
+    enabled: true
+
+  hostPaths:
+    - mountPath: /var/log/tetragon
+      name: logdir
+      hostPath: /var/log/tetragon
+      type: DirectoryOrCreate
+
+  extraVolumeMounts:
+    - name: logdir
+      mountPath: /var/log/tetragon
+
+  extraVolumes:
+    - name: logdir
+      hostPath:
+        path: /var/log/tetragon
+        type: DirectoryOrCreate
