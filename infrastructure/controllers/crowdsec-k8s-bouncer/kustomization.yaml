@@ -1,11 +1,12 @@
-helmCharts:
-  - name: crowdsec-k8s-bouncer
-    repo: https://crowdsecurity.github.io/helm-charts
-    version: 0.6.0
-    releaseName: crowdsec-bouncer
-    namespace: crowdsec-k8s-bouncer
-    valuesFile: values.yaml
-
+# kustomization.yaml
 resources:
-  - ns.yaml
+  - namespace.yaml
   - secret.yaml
+
+helmCharts:
+  - name: crowdsec-traefik-bouncer
+    repo: https://crowdsecurity.github.io/helm-charts
+    version: 0.1.4
+    releaseName: crowdsec-traefik-bouncer
+    namespace: crowdsec-traefik-bouncer
+    valuesFile: values.yaml

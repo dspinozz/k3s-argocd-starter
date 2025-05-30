@@ -1,11 +1,14 @@
+# values.yaml
 replicaCount: 1
 
-api:
-  credentials:
-    existingSecret: crowdsec-bouncer-api
-    key: bouncer_key
+apiKey:
+  existingSecret: crowdsec-traefik-bouncer-api
+  existingSecretKey: bouncer_key
 
-crowdsec:
-  lapi:
-    url: http://100.71.155.85:8080
-    tlsSkipVerify: true
+crowdsecLapi:
+  url: http://100.71.155.85:8080
+  tlsSkipVerify: true
+
+traefik:
+  enabled: true
+  type: middleware
