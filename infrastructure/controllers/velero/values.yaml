@@ -25,4 +25,4 @@ initContainers:
       - mountPath: /target
         name: plugins
 
-deployRestic: true
+deployNodeAgent: true
