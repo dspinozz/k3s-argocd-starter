@@ -1,4 +1,3 @@
 resources:
   - ns.yaml
-  - secret.yaml
   - values.yaml
