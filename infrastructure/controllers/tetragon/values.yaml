@@ -1,24 +1,23 @@
 tetragon:
   enabled: true
 
-  tetragonConfig:
-    exportFilename: /var/log/tetragon/tetragon.log
-
+  # Enable the Tetragon operator
   operator:
     enabled: true
 
-  hostPaths:
-    - mountPath: /var/log/tetragon
-      name: logdir
-      hostPath: /var/log/tetragon
-      type: DirectoryOrCreate
+  # Configure Tetragon log output path
+  tetragonConfig:
+    logPath: /var/log/tetragon/tetragon.log
 
-  extraVolumeMounts:
-    - name: logdir
-      mountPath: /var/log/tetragon
+  # Use hostPath to persist logs to node filesystem for Wazuh agent access
+  logMountPath: /var/log/tetragon
+  logHostPath: /var/log/tetragon
 
-  extraVolumes:
-    - name: logdir
-      hostPath:
-        path: /var/log/tetragon
-        type: DirectoryOrCreate
+  # Recommended defaults (can tune later)
+  enableK8sAPIAccess: true
+  enableProcessCred: true
+  enableProcessNs: true
+  enableProcessExec: true
+  enableProcessExit: true
+  enableProcessTTY: true
+  enableProcessKprobe: true
