@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: security-components
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: crowdsec-k8s-bouncer
+            path: security/crowdsec-k8s-bouncer
+          - name: falco
+            path: security/falco
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/dspinozz/k3s-argocd-starter.git  # ← adjust this to match your actual repo URL
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{name}}'
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
