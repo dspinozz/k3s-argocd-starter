@@ -13,8 +13,8 @@ spec:
           - path: infrastructure/networking/*
           - path: infrastructure/storage/*
           - path: infrastructure/controllers/*
-          - path: security/falco/*
-          - path: crowdsec-k8s-bouncer/*
+          - path: security/falco/
+          - path: crowdsec-k8s-bouncer/
   template:
     metadata:
       name: '{{path.basename}}'
