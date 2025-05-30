@@ -1,0 +1,19 @@
+auth:
+  rootUser: minioadmin
+  rootPassword: minioadmin
+
+defaultBuckets: velero-backups
+
+mode: standalone
+
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 250m
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+service:
+  type: ClusterIP
