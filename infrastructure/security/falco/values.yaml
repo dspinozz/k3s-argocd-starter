@@ -1,5 +1,0 @@
-tty: true
-falco:
-  jsonOutput: true
-  logLevel: info
-  timeFormatISO8601: true
