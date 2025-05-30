@@ -7,8 +7,7 @@ tetragon:
 
   # Configure Tetragon log output path
   tetragonConfig:
-    logPath: /var/log/tetragon/tetragon.log
-
+    exportFilename: /var/log/tetragon/tetragon.log
   # Use hostPath to persist logs to node filesystem for Wazuh agent access
   logMountPath: /var/log/tetragon
   logHostPath: /var/log/tetragon
