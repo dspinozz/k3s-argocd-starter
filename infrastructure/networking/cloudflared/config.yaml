@@ -8,10 +8,13 @@ protocol: http2
 
 
 ingress:
-  # Example for a specific service (hello-world)
+
+
   - hostname: hello.wiredgateway.com
-    service: http://hello-world.hello-world.svc.cluster.local:5678
+    service: http://hello-world.hello-world.svc.cluster.local:8080
     originRequest:
+      noTLSVerify: true
+      originServerName: "*.wiredgateway.com"
       logHeaders: true
       headers:
         - name: CF-Connecting-IP
@@ -28,6 +31,12 @@ ingress:
         - name: X-Forwarded-For
         - name: Accept-Language
         - name: User-Agent
+        - name: True-Client-IP
+        - name: CF-Client-Bot
+        - name: CF-Bot-Score
+        - name: CF-Bot-Management-Tag
+        - name: CF-Worker
+        - name: CF-Challenge
 
   # Wildcard for all Gateway-exposed services
   - hostname: "*.wiredgateway.com"
