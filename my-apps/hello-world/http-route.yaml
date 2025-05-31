@@ -5,16 +5,16 @@ metadata:
   namespace: hello-world
 spec:
   parentRefs:
-    - name: gateway-internal    # Must match your Gateway's metadata.name
+    - name: gateway-external       # ✅ MUST point to external gateway
       namespace: gateway
-      sectionName: https       # Must match your Gateway's listeners[].name
+      sectionName: https           # ✅ Must match your TLS listener name
   hostnames:
-  - "hello-world.wiredgateway.com"
+    - "hello-world.wiredgateway.com"
   rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /
-    backendRefs:
-    - name: hello-world
-      port: 8080
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: hello-world
+          port: 80                 # ✅ Port must match the Service port
