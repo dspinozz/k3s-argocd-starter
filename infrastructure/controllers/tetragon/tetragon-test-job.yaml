@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: tetragon-test
+spec:
+  template:
+    spec:
+      hostPID: true
+      containers:
+      - name: attacker
+        image: busybox
+        command:
+          - sh
+          - -c
+          - |
+            echo "[!] Running dangerous operations..."
+            sleep 3
+            cat /proc/cpuinfo >/dev/null
+            nsenter -t 1 -m -u -n -i -- sh -c 'echo Exploit attempt' || true
+            sleep 5
+        securityContext:
+          privileged: true
+      restartPolicy: Never
+  backoffLimit: 1

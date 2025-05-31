@@ -1,22 +1,22 @@
 tetragon:
   enabled: true
 
-  # Enable the Tetragon operator
-  operator:
-    enabled: true
+# Enable the Tetragon operator
+operator:
+  enabled: true
 
-  # Configure Tetragon log output path
-  tetragonConfig:
-    exportFilename: /var/log/tetragon/tetragon.log
+# Configure Tetragon log output path
+tetragonConfig:
+  exportFilename: /var/run/cilium/tetragon/tetragon.log
   # Use hostPath to persist logs to node filesystem for Wazuh agent access
-  logMountPath: /var/log/tetragon
-  logHostPath: /var/log/tetragon
+  logMountPath: /var/run/cilium/tetragon
+  logHostPath: /var/run/cilium/tetragon
 
-  # Recommended defaults (can tune later)
-  enableK8sAPIAccess: true
-  enableProcessCred: true
-  enableProcessNs: true
-  enableProcessExec: true
-  enableProcessExit: true
-  enableProcessTTY: true
-  enableProcessKprobe: true
+# Recommended defaults (can tune later)
+enableK8sAPIAccount: true
+enableProcessCred: true
+enableProcessNs: true
+enableProcessExec: true
+enableProcessExit: true
+enableProcessTTY: true
+enableProcessKprobe: true
