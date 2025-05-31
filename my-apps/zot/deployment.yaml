@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zot
+  namespace: zot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zot
+  template:
+    metadata:
+      labels:
+        app: zot
+    spec:
+      containers:
+        - name: zot
+          image: ghcr.io/project-zot/zot-linux-amd64:latest
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - mountPath: /var/lib/zot
+              name: zot-data
+      volumes:
+        - name: zot-data
+          emptyDir: {}

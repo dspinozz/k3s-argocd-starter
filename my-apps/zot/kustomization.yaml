@@ -1,13 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-helmCharts:
-  - name: zot
-    repo: https://charts.zotregistry.dev
-    releaseName: zot
-    version: 0.1.44
-    namespace: zot
-    valuesFile: values.yaml
-
 resources:
   - namespace.yaml
+  - deployment.yaml
+  - service.yaml
