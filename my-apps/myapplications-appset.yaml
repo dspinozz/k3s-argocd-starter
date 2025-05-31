@@ -13,6 +13,9 @@ spec:
           - path: my-apps/gitea
           - path: my-apps/zot
           - path: my-apps/drone
+          - path: my-apps/headlamp
+          - path: my-apps/it-tools
+          - path: my-apps/homepage-dashboard
   template:
     metadata:
       name: '{{path.basename}}'
