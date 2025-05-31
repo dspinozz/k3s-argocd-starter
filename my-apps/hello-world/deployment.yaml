@@ -19,7 +19,7 @@ spec:
         fsGroup: 1000
       containers:
       - name: echo-server
-        image: mendhak/http-https-echo
+        image: ealen/echo-server
         ports:
         - containerPort: 8080
         securityContext:
