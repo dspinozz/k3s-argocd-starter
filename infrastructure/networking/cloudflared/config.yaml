@@ -11,7 +11,7 @@ ingress:
 
 
   - hostname: hello.wiredgateway.com
-    service: https://cilium-gateway-gateway-external.gateway.svc.cluster.local:443
+    service: http://hello-world.hello-world.svc.cluster.local:80
     originRequest:
       noTLSVerify: true
       originServerName: "*.wiredgateway.com"
