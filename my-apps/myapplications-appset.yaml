@@ -1,4 +1,3 @@
-# my-apps/myapplications-appset.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -13,12 +12,12 @@ spec:
         revision: HEAD
         directories:
           - path: my-apps/*
-          - path: my-apps/*/*
-          - exclude: true
-            path: my-apps/myapplications-appset.yaml
+        exclude: true
+          # The appset file itself should be excluded
+          # Ensures we don't accidentally try to deploy it
+          # Adjust below if you use subfolders like `apps/` or `apps/core`
   template:
     metadata:
-      # Changed from 'app-{{path.basename}}' to just '{{path.basename}}'
       name: '{{path.basename}}'
       labels:
         type: application
