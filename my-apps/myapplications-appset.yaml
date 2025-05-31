@@ -15,18 +15,16 @@ spec:
           - path: my-apps/drone
   template:
     metadata:
-      name: hello-world
-      labels:
-        type: application
+      name: '{{path.basename}}'
     spec:
       project: applications
       source:
         repoURL: https://github.com/dspinozz/k3s-argocd-starter.git
         targetRevision: HEAD
-        path: my-apps/hello-world
+        path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: hello-world
+        namespace: '{{path.basename}}'
       syncPolicy:
         automated:
           prune: true
