@@ -1,0 +1,26 @@
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: gitea.internal.cluster.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+postgresql:
+  enabled: true
+
+gitea:
+  admin:
+    username: "admin"
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: gitea-secret
+          key: admin_password
+    email:
+      valueFrom:
+        secretKeyRef:
+          name: gitea-secret
+          key: admin_email

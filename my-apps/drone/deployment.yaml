@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drone
+  namespace: drone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drone
+  template:
+    metadata:
+      labels:
+        app: drone
+    spec:
+      containers:
+        - name: drone
+          image: drone/drone:2
+          ports:
+            - containerPort: 80
+          env:
+            - name: DRONE_GITEA_SERVER
+              value: "http://gitea.gitea.svc.cluster.local"
+            - name: DRONE_RPC_SECRET
+              value: "Mordekaiser123"
+            - name: DRONE_SERVER_HOST
+              value: "drone.internal.cluster.local"
+            - name: DRONE_SERVER_PROTO
+              value: "http"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: drone
+  namespace: drone
+spec:
+  selector:
+    app: drone
+  ports:
+    - port: 80
+      targetPort: 80
