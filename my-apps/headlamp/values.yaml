@@ -36,7 +36,7 @@ resources:
 
 # You can enable ingress if needed
 ingress:
-  enabled: false
+  enabled: true
   # Configure for your environment if enabled
   # hosts:
   #   - host: headlamp.yourdomain.com

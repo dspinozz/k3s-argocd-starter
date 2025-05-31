@@ -1,0 +1,8 @@
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: it-tools.internal.cluster.local
+      paths:
+        - path: /
+          pathType: Prefix

@@ -1,0 +1,9 @@
+ingress:
+  main:
+    enabled: true
+    className: nginx
+    hosts:
+      - host: homepage.internal.cluster.local
+        paths:
+          - path: /
+            pathType: Prefix
