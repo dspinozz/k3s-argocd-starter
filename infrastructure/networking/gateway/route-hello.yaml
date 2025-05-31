@@ -15,5 +15,6 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: hello-service
+        - name: hello-world
+        - namespace: hello-world
           port: 80
