@@ -5,11 +5,6 @@ gitea:
     passwordKey: password
     emailKey: email
 
-  config:
-    server:
-      DOMAIN: gitea.internal.cluster.local
-      ROOT_URL: http://gitea.internal.cluster.local/
-
 ingress:
   enabled: true
   className: nginx
@@ -18,4 +13,3 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
-  tls: []
