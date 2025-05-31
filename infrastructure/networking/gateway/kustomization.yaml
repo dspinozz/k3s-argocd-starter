@@ -9,7 +9,8 @@ resources:
   - gw-external.yaml
   - gw-internal.yaml
   - cert-wiredgateway.yaml
-
+  - cloudflare-cluster-issuer.yaml
+  - route-hello.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
