@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd
+spec:
+  project: applications
+  source:
+    repoURL: https://dl.gitea.io/charts/
+    chart: gitea
+    targetRevision: 12.0.0
+    helm:
+      values: |
+        gitea:
+          admin:
+            existingSecret: gitea-admin-secret
+            usernameKey: username
+            passwordKey: password
+            emailKey: email
+        ingress:
+          enabled: true
+          className: nginx
+          hosts:
+            - host: gitea.internal.cluster.local
+              paths:
+                - path: /
+                  pathType: Prefix
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitea
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
