@@ -3,45 +3,34 @@ kind: ApplicationSet
 metadata:
   name: applications
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   generators:
     - git:
         repoURL: https://github.com/dspinozz/k3s-argocd-starter.git
         revision: HEAD
         directories:
-          - path: my-apps/*
-        exclude: true
-          # The appset file itself should be excluded
-          # Ensures we don't accidentally try to deploy it
-          # Adjust below if you use subfolders like `apps/` or `apps/core`
+          - path: my-apps/hello-world
+          - path: my-apps/gitea
+          - path: my-apps/zot
+          - path: my-apps/drone
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: hello-world
       labels:
         type: application
     spec:
       project: applications
       source:
-        plugin:
-          name: kustomize-build-with-helm
         repoURL: https://github.com/dspinozz/k3s-argocd-starter.git
         targetRevision: HEAD
-        path: '{{path}}'
+        path: my-apps/hello-world
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: hello-world
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
-        retry:
-          limit: 5
-          backoff:
-            duration: 5s
-            factor: 2
-            maxDuration: 3m
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
